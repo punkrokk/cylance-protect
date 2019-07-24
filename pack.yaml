@@ -4,7 +4,7 @@ ref: cylance
 description: Cylance sensors and actions
 keywords: 
     - 
-stackstorm_version: ">=3.1.0"
+stackstorm_version: ">=2.9.0"
 version: 0.1.0
 author: Syncurity
 email: support@syncurity.net
