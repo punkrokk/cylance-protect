@@ -1,0 +1,25 @@
+---
+name: "cylance_add_hash"
+runner_type: "python-script"
+description: "Add a hash to Cylance Quarantine"
+enabled: true
+entry_point: "cylance_add_hash.py"
+parameters:
+    hash_value:
+        type: "string"
+        description: "SHA256 Hash value to add"
+        required: true
+    list_type:
+      type: "string"
+      description: "List type to fetch from Cylance: GlobalQuarantine or GlobalSafe"
+      required: true
+    category:
+      type: "string"
+      description: "Category of the safe list"
+      required: false
+      default: ""
+    reason:
+      type: "string"
+      description: "Reason for the hash upload"
+      required: false
+      default: ""

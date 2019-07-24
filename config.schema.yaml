@@ -1,0 +1,16 @@
+---
+tenant_value:
+  description: "Cylance Tenant Value"
+  type: "string"
+  secret: false
+  required: true
+app_id:
+  description: "Cylance Application Id"
+  type: "string"
+  secret: false
+  required: true
+app_secret:
+  description: "Application Secret"
+  type: "string"
+  secret: false
+  required: true

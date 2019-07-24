@@ -1,0 +1,20 @@
+---
+name: cylance
+ref: cylance
+description: Cylance sensors and actions
+keywords: 
+    - 
+stackstorm_version: ">=3.1.0"
+version: 0.1.0
+author: Syncurity
+email: support@syncurity.net
+python version:
+  - "2"
+  - "3"
+contributors:
+  - JP Bourget <jp@syncurity.net>
+  - Ryan Markle <rmarkle@syncurity.net>
+  - Grace Lombardi <glombardi@syncurity.net>
+  - Brian Tackett <btackett@syncurity.net>
+  - Max Meinhold <mmeinhold@syncurity.net>
+  - Alex Schieppati <alex@syncurity.net>
