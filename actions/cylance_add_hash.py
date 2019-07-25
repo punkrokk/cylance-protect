@@ -2,7 +2,7 @@ import json
 
 from base import CylanceBaseAction
 from st2common.runners.base_action import Action
-from cylance import Cylance
+from cylance import CylanceProtectClient
 
 
 class CylanceAddHash(Action):
