@@ -2,10 +2,9 @@ import json
 
 from base import CylanceBaseAction
 from st2common.runners.base_action import Action
-from cylance import CylanceProtectClient
 
 
-class CylanceAddHash(Action):
+class CylanceAddHash(CylanceBaseAction):
     """Add a hash value to a Quarantine or Safe List"""
     def run(self, hash_value, list_type, category=None, reason=None):
 
