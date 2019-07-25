@@ -10,7 +10,7 @@ class CylanceAddHash(Action):
     def run(self, hash_value, list_type, category=None, reason=None):
 
         try:
-            cylance = Cylance(tenant_value=tenant_value, app_id=app_id, app_secret=app_secret)
+            cylance = CylanceProtectClient(tenant_value=tenant_value, app_id=app_id, app_secret=app_secret)
         except (ValueError, KeyError) as e:
             self.logger.error(e.__str__())
             sys.exit(1)
