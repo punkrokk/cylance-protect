@@ -6,7 +6,7 @@ from cylance import Cylance
 
 
 class CylanceAddHash(Action):
-    """Add an hash value to a Quarantine List"""
+    """Add a hash value to a Quarantine List"""
     def run(self, hash_value, list_type, category=None, reason=None):
 
         try:
