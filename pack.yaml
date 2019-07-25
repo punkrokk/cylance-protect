@@ -2,7 +2,7 @@
 name: cylance
 ref: cylance
 description: Cylance sensors and actions
-keywords: cylance
+keywords: 'cylance'
 stackstorm_version: ">=2.9.0"
 version: 0.1.0
 author: Syncurity
