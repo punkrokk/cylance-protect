@@ -1,3 +1,4 @@
 irflow_client
 requests
+jwt
 syncurity-utils<=0.2.24
