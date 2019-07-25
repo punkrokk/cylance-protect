@@ -1,4 +1,4 @@
 irflow_client
 requests
-jwt
+pyjwt
 syncurity-utils<=0.2.24
