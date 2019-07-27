@@ -8,8 +8,9 @@ class CylanceAddHash(CylanceBaseAction):
     """Add a hash value to a Quarantine or Safe List"""
     def run(self, hash_value, list_type, category=None, reason=None):
 
-        response = self.cylance.add_hash_to_list(hash_value, list_type, category, reason)
+        logger = self.logger
 
+        response = self.cylance.add_hash_to_list(hash_value, list_type, category, reason)
         if response:
 
             response_dict = json.loads(response.content)

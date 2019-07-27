@@ -14,4 +14,8 @@ class CylanceBaseAction(Action):
         tenant_value = self.config.get('tenant_value', None)
         app_id = self.config.get('app_id', None)
         app_secret = self.config.get('app_secret', None)
-        self.cylance = CylanceProtectClient(tenant_value, app_id, app_secret)
+
+        try:
+            self.cylance = CylanceProtectClient(tenant_value, app_id, app_secret)
+        except ValueError:
+            self.logger(tenant_value, app_id, app_secret)
