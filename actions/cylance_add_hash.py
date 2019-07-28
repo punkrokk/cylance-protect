@@ -24,5 +24,5 @@ class CylanceAddHash(CylanceBaseAction):
 
             return True, fact_data
         else:
-            return False, "Hash could not be added to the specified list."
-
+            #return False, "Hash could not be added to the specified list."
+            return False, response
