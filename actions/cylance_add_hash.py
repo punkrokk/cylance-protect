@@ -10,6 +10,9 @@ class CylanceAddHash(CylanceBaseAction):
 
         logger = self.logger
 
+        category = category if command_args.category else 'Security Software'
+        reason = reason if command_args.reason else None
+
         response = self.cylance.add_hash_to_list(hash_value, list_type, category, reason)
         if response:
 
