@@ -25,4 +25,4 @@ class CylanceAddHash(CylanceBaseAction):
             return True, fact_data
         else:
             #return False, "Hash could not be added to the specified list."
-            return False, response
+            return False, self.cylance.tenant_value + ' ' + self.cylance.app_id + ' ' + self.cylance.app_secret
