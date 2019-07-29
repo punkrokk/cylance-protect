@@ -16,7 +16,7 @@ class CylanceAddHash(CylanceBaseAction):
         response = self.cylance.add_hash_to_list(hash_value, list_type, category, reason)
         if response[0]:
 
-            response_dict = json.loads(response[0].content)
+            response_dict = json.loads(response[1].content)
             fact_data = {
                 'sha256': response_dict['sha256'],
                 'category': response_dict['category'],
