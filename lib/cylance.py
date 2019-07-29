@@ -45,19 +45,14 @@ Examples:
 
 import jwt
 import uuid
-import logging
 import requests
 import os
 import json
-import logging
 import requests
 
 from datetime import datetime, timedelta
 
 from syncurity_utils import typecheck
-
-logger = logging.getLogger('cylance')
-logger.addHandler(logging.NullHandler())
 
 
 class CylanceProtectClient(object):
@@ -139,25 +134,22 @@ class CylanceProtectClient(object):
             elif method == 'delete':
                 response = self.session.delete(url, json=params, timeout=timeout)
             else:
-                logger.error('Please enter a value request method: get, post, or patch.')
-                return None
+                return None, 'Please enter a value request method: get, post, or patch.'
+
         except requests.exceptions.ConnectionError:
-            logger.error('Connection Error triggered while attempting to connect with cylance at: ' + self.base_url +
-                         '. Please ensure that your connection to the internet is stable and that your firewall and '
-                         'router are not interfering')
-            return None
+            return False, 'Connection Error triggered while attempting to connect with cylance at: ' + self.base_url + \
+                         '. Please ensure that your connection to the internet is stable and that your firewall and ' \
+                         'router are not interfering'
         except Exception as e:
-            logger.error(e.__repr__())
-            return None
+            return False, e.__repr__()
 
         # If the status code is bad, then session authentication failed
         try:
             response.raise_for_status()
         except requests.HTTPError as e:
-            logger.error(e.__str__())
-            return None
+            return False, e.__str__()
 
-        return response
+        return True, response
 
     def get_jwt_token(self):
         """

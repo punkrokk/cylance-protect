@@ -14,7 +14,7 @@ class CylanceAddHash(CylanceBaseAction):
         reason = reason if reason else None
 
         response = self.cylance.add_hash_to_list(hash_value, list_type, category, reason)
-        if response:
+        if response[0]:
 
             response_dict = json.loads(response.content)
             fact_data = {
@@ -29,4 +29,4 @@ class CylanceAddHash(CylanceBaseAction):
         else:
             # return False, "Hash could not be added to the specified list."
             # return False, self.cylance.tenant_value + ' ' + self.cylance.app_id + ' ' + self.cylance.app_secret
-            return False, hash_value + ' ' + list_type
+            return response[0], response[1]
