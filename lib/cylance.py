@@ -184,8 +184,8 @@ class CylanceProtectClient(object):
         # send the request
         response = self._send_request(auth_url, params=payload, method='post')
 
-        if response:
-            response_dict = json.loads(response.content)
+        if response[0]:
+            response_dict = json.loads(response[0].content)
             return response_dict['access_token']
 
         return None
