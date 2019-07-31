@@ -6,9 +6,9 @@ from st2common.runners.base_action import Action
 
 class CylanceGetThreats(CylanceBaseAction):
     """Get Threat Information given a Hash Value"""
-    def run(self, sha256):
+    def run(self, page, page_size):
 
-        response = self.cylance.get_threats()
+        response = self.cylance.get_threats(page, page_size)
 
         if response[0]:
 
