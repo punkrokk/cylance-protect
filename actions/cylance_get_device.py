@@ -16,6 +16,8 @@ class CylanceGetDevice(CylanceBaseAction):
             except:
                 return False, 'Could not parse JSON response'
 
+            DEVICE_LINK = "https://protect.cylance.com/Device/DeviceDetails/"
+
             fact_data = {
                 'id': response_dict.get('id', None),
                 'name': response_dict.get('name', None),
