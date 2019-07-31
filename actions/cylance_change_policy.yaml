@@ -1,0 +1,15 @@
+---
+name: "Cylance Change Policy"
+runner_type: "python-script"
+description: "Change policy of a specific device"
+enabled: true
+entry_point: "cylance_change_policy.py"
+parameters:
+    device_name:
+        type: "string"
+        description: "Name of the device"
+        required: true
+    policy_name:
+        type: "string"
+        description: "Name of the policy"
+        required: true
