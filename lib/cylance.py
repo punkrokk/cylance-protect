@@ -95,7 +95,7 @@ class CylanceProtectClient(object):
             'threats': '/threats/v2',
             'zones': '/zones/v2',
             'threat_devices': '/threats/v2/{0}/devices?page=1&page_size=n',
-            'threat_url': '/threats/v2/download?hash={0}',
+            'threat_url': '/threats/v2/download/{0}',
             'detections': '/detections/v2',
         }
 
