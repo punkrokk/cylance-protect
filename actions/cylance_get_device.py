@@ -12,7 +12,7 @@ class CylanceGetDevice(CylanceBaseAction):
         if response[0]:
 
             try:
-                response_dict = response[0].json()
+                response_dict = response[1].json()
                 fact_data = {
                     'id': response_dict.get('id', None),
                     'name': response_dict.get('name', None),
