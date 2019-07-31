@@ -14,6 +14,7 @@ class CylanceAddHash(CylanceBaseAction):
         response = self.cylance.add_hash_to_list(hash_value, list_type, category, reason)
         if response[0]:
 
+            # the response only returns success or failure
             fact_data = {
                 'action': "Successfully added hash to the specified list."
             }
