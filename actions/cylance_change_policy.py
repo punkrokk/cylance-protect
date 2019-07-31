@@ -15,7 +15,7 @@ class CylanceChangePolicy(CylanceBaseAction):
             try:
                 response_dict = response[1].json()
             except:
-                return False, 'Could not parse JSON response'
+                return False, response[1]
 
             fact_data = {
                 'response': response_dict
