@@ -356,8 +356,8 @@ class CylanceProtectClient(object):
         """
 
         policy_list = self.get_policies()
-        if policy_list:
-            policy_list = json.loads(policy_list.content)
+        if policy_list[0]:
+            policy_list = json.loads(policy_list[1].content)
 
             policy_id = None
             for policy in policy_list['page_items']:
