@@ -15,7 +15,7 @@ class CylanceChangePolicy(CylanceBaseAction):
             try:
                 response_dict = response[1].json()
             except:
-                return False, response[1]
+                return True, 'Policy successfully changed'
 
             fact_data = {
                 'response': response_dict
@@ -23,5 +23,5 @@ class CylanceChangePolicy(CylanceBaseAction):
 
             return True, fact_data
         else:
-            return False, "Cylance could not retrieve threat information given the provided hash value"
+            return False, "Cylance could not change the device's policy as given"
 

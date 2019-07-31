@@ -23,5 +23,5 @@ class CylanceGetThreats(CylanceBaseAction):
 
             return True, fact_data
         else:
-            return False, "Cylance could not retrieve threat information given the provided hash value"
+            return False, "Cylance could not retrieve the threat list"
 
