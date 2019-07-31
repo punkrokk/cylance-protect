@@ -8,7 +8,7 @@ class CylanceGetThreatDevices(CylanceBaseAction):
     """Get Threat Device Information given a Hash Value"""
     def run(self, sha256):
 
-        response = self.cylance.get_threat(sha256)
+        response = self.cylance.get_threat_devices(sha256)
 
         if response[0]:
 
