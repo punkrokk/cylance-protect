@@ -38,7 +38,7 @@ class CylanceGetDevice(CylanceBaseAction):
 
                 return True, fact_data
             except:
-                return False, 'Could not parse JSON response'
+                return False, response[1]
         else:
             return False, "Hash could not retrieve device information given the provided name"
 
