@@ -287,8 +287,8 @@ class CylanceProtectClient(object):
         """
 
         device_list = self.get_devices()
-        if device_list:
-            device_list = json.loads(device_list.content)
+        if device_list[0]:
+            device_list = json.loads(device_list[1].content)
 
             device_id = None
             for device in device_list['page_items']:
