@@ -1,5 +1,5 @@
 ---
-name: "cylance_remove_hash"
+name: "Cylance Remove Hash"
 runner_type: "python-script"
 description: "Remove a hash from Cylance Quarantine"
 enabled: true

@@ -5,7 +5,7 @@ description: "Get Threat Detail from Cylance"
 enabled: true
 entry_point: "cylance_get_threat.py"
 parameters:
-    device_name:
+    sha256:
         type: "string"
-        description: "Threat information given a sha256 string"
+        description: "Sha256 of the threat"
         required: true

@@ -1,5 +1,5 @@
 ---
-name: "cylance_add_hash"
+name: "Cylance Add Hash"
 runner_type: "python-script"
 description: "Add a hash to Cylance Quarantine"
 enabled: true
