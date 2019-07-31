@@ -247,7 +247,7 @@ class CylanceProtectClient(object):
             code
         """
 
-        url = self.base_url + self.endpoints['devices'] + '?page=1&page_size=10'
+        url = self.base_url + self.endpoints['devices'] + '?page=1&page_size=1000'
 
         return self._send_request(url)
 

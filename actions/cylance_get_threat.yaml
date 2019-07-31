@@ -1,0 +1,11 @@
+---
+name: "Cylance Get Threat"
+runner_type: "python-script"
+description: "Get Threat Detail from Cylance"
+enabled: true
+entry_point: "cylance_get_threat.py"
+parameters:
+    device_name:
+        type: "string"
+        description: "Threat information given a sha256 string"
+        required: true
