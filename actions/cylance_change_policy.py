@@ -8,7 +8,7 @@ class CylanceChangePolicy(CylanceBaseAction):
     """Get Threat Information given a Hash Value"""
     def run(self, device_name, policy_name):
 
-        response = self.cylance.change_policy(device_name, policy_name)
+        response = self.cylance.update_device_policy(device_name, policy_name)
 
         if response[0]:
 
