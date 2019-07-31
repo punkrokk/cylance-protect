@@ -8,7 +8,7 @@ __all__ = [
 
 
 class CylanceBaseAction(Action):
-    """Things common to Cylance action class construction"""
+    """Things common to Cylance Optics action class construction"""
     def __init__(self, config):
         super(CylanceBaseAction, self).__init__(config=config)
         tenant_value = self.config.get('tenant_value', None)
@@ -17,5 +17,5 @@ class CylanceBaseAction(Action):
 
         try:
             self.cylance = CylanceProtectClient(tenant_value, app_id, app_secret)
-        except ValueError:
-            self.logger.error(tenant_value, app_id, app_secret)
+        except ValueError as e:
+            self.logger.error(e)

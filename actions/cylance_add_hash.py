@@ -8,25 +8,16 @@ class CylanceAddHash(CylanceBaseAction):
     """Add a hash value to a Quarantine or Safe List"""
     def run(self, hash_value, list_type, category=None, reason=None):
 
-        logger = self.logger
-
         category = category if category else 'Security Software'
         reason = reason if reason else None
 
         response = self.cylance.add_hash_to_list(hash_value, list_type, category, reason)
         if response[0]:
 
-            response_dict = response[1].json()
             fact_data = {
-                'sha256': response_dict['sha256'],
-                'category': response_dict['category'],
-                'listType': response_dict['list_type'],
-                'reason': response_dict['reason'],
                 'action': "Successfully added hash to the specified list."
             }
 
             return True, fact_data
         else:
-            # return False, "Hash could not be added to the specified list."
-            # return False, self.cylance.tenant_value + ' ' + self.cylance.app_id + ' ' + self.cylance.app_secret
-            return response[0], response[1]
+            return False, "Hash could not be added to the specified list."

@@ -134,7 +134,7 @@ class CylanceProtectClient(object):
             elif method == 'delete':
                 response = self.session.delete(url, json=params, timeout=timeout)
             else:
-                return None, 'Please enter a value request method: get, post, or patch.'
+                return False, 'Please enter a value request method: get, post, or patch.'
 
         except requests.exceptions.ConnectionError:
             return False, 'Connection Error triggered while attempting to connect with cylance at: ' + self.base_url + \

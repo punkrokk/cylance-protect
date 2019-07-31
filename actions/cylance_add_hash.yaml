@@ -6,9 +6,9 @@ enabled: true
 entry_point: "cylance_add_hash.py"
 parameters:
     hash_value:
-        type: "string"
-        description: "SHA256 Hash value to add"
-        required: true
+      type: "string"
+      description: "SHA256 Hash value to add"
+      required: true
     list_type:
       type: "string"
       description: "List type to fetch from Cylance: GlobalQuarantine or GlobalSafe"
