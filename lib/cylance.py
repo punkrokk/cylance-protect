@@ -268,8 +268,7 @@ class CylanceProtectClient(object):
         device_id = self._get_device_id(device_name)
 
         if not device_id:
-            logger.info('Could not find a device ID for the given name')
-            return None
+            return False, 'Could not find a device ID for the given name'
 
         url = self.base_url + self.endpoints['devices'] + '/' + device_id
 
@@ -452,8 +451,7 @@ class CylanceProtectClient(object):
         """
 
         if list_type != 'GlobalSafe' and list_type != 'GlobalQuarantine':
-            logger.error('Valid list types are \'GlobalQuarantine\' and \'GlobalSafe\'')
-            return None
+            return False, 'Valid list types are \'GlobalQuarantine\' and \'GlobalSafe\''
 
         url = self.base_url + self.endpoints['global_lists']
 
@@ -520,14 +518,12 @@ class CylanceProtectClient(object):
         device_id = self._get_device_id(device_name)
 
         if not device_id:
-            logger.error('Could not find a device ID for the given name')
-            return None
+            return False, 'Could not find a device ID for the given name'
 
         policy_id = self._get_policy_id(policy_name)
 
         if not policy_id:
-            logger.error('Could not find a policy ID for the given policy name')
-            return None
+            return False, 'Could not find a policy ID for the given policy name'
 
         # construct the payload object
         data = {
@@ -539,8 +535,7 @@ class CylanceProtectClient(object):
             zone_id = self._get_zone_id(zone_name)
 
             if not zone_id:
-                logger.error('Could not find a zone ID for the given zone name')
-                return None
+                return False, 'Could not find a zone ID for the given zone name'
 
             data['add_zone_ids'] = [zone_id]
 
@@ -548,30 +543,4 @@ class CylanceProtectClient(object):
 
         return self._send_request(url, params=data, method='put')
 
-    @typecheck(dict, str)
-    def create_irflow_alert(self, fact_group, description):
-        """Creates an IR-Flow alert based on the provided fact group and description
-        Args:
-            fact_group (dict): The alert fact group to upload to IR-Flow
-            description (str): Description to set for created alerts
-        Raises:
-            TypeError: This function is typechecked using the :mod:`irflow_integrations.typecheck` module
-        Returns:
-            dict: The full response from IR-Flow if successful, ``None`` otherwise
-        """
-        response = self.irfc.create_alert(fact_group, description, incoming_field_group_name='cylance Detected Threat')
 
-        if response is None:
-            return None
-
-        if 'errorCode' in response and response['errorCode'] is not None:
-            logger.error('Got Error {0} from IR-Flow'.format(str(response['errorCode'])))
-            return None
-        elif 'errors' in response['data'] and len(response['data']['errors']) != 0:
-            logger.warning('Submission to IR-Flow returned success, but with errors')
-            for error in response['data']['errors']:
-                logger.error(error['messages'])
-
-        logger.debug(response['message'])
-
-        return response
