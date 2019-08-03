@@ -26,7 +26,7 @@ Add the following to the file `/etc/st2/st2.conf`
     enable_common_libs = True
 ```
 
-## ActionsGet Threat URL from Cylance
+## Actions
 
 | Action | Description|
 |---|---|
