@@ -1,10 +1,10 @@
-# Cylance Optics Integration Pack
+# Cylance Protect Integration Pack
 
-Integration for Cylance Optics.
+Integration for Cylance Protect.
 
 ## Configuration
 
-Create a configuration file `/opt/stackstorm/configs/cylance_optics.yaml`:
+Create a configuration file `/opt/stackstorm/configs/cylance.yaml`:
 
 ```
     ---
