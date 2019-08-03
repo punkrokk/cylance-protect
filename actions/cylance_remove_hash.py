@@ -1,7 +1,5 @@
-import json
 
 from base import CylanceBaseAction
-from st2common.runners.base_action import Action
 
 
 class CylanceRemoveHash(CylanceBaseAction):

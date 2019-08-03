@@ -4,8 +4,9 @@ The :class:`CylanceProtectClient` class provides a wrapper around the Cylance Pr
 
 Examples:
 
-    Constructing a :class:`cylance` object takes a cylance tenant ID, an application ID, and application secret. These
-    can be acquired on the cylance web application. A username and password is required to access the web application::
+    Constructing a :class:`cylance` object takes a cylance tenant ID, an application ID, and
+    application secret. These can be acquired on the cylance web application. A username and
+    password is required to access the web application::
 
         # Initialization
         cylance = CylanceProtectClient(<tenant_id>, <application_id>, <application_secret>)
@@ -22,9 +23,11 @@ Examples:
 
         response = CylanceProtectClient.remove_hash_from_list(<hash_value>, <global_list>)
 
-    Add an entry to a global list (GlobalQuarantine or GlobalSafe) with category(if GlobalSafe) and reason::
+    Add an entry to a global list (GlobalQuarantine or GlobalSafe) with category(if GlobalSafe) and
+    reason::
 
-        response = CylanceProtectClient.add_hash_to_list(<entry_list>, <list_type>, <category>, <reason>)
+        response = CylanceProtectClient.add_hash_to_list(<entry_list>, <list_type>, <category>,
+                                                         <reason>)
 
     Query for threats::
 
@@ -45,8 +48,6 @@ Examples:
 
 import jwt
 import uuid
-import requests
-import os
 import json
 import requests
 
@@ -56,15 +57,13 @@ from syncurity_utils import typecheck
 
 
 class CylanceProtectClient(object):
-    """Construct a new connection to the Cylance Protect API - retrieve a JWT given correct tenant name, application ID,
-    and application secret
+    """Construct a new connection to the Cylance Protect API - retrieve a JWT given correct tenant
+    name, application ID, and application secret
 
     Args:
         tenant_value (str): The Cylance application's tenant value
         app_id (str): The Cylance application's application id
         app_secret (str): The Cylance application's application secret
-        irflow_config_args (dict): Key, Value pairs of IR-Flow configuration arguments
-        irflow_config_file (str): A path to a valid ``irflow_api.conf`` file
 
     Attributes:
         self.base_url (str): The base url for the Cylance API
@@ -75,7 +74,8 @@ class CylanceProtectClient(object):
         IOError: On a failure to open a config file
         KeyError: On failure to parse config file
         ValueError: On inability to get a valid auth token
-        TypeError: This function is typechecked using the :mod:`irflow_integrations.typecheck` module
+        TypeError: This function is typechecked using the :mod:`irflow_integrations.typecheck`
+        module
     """
     @typecheck(str, str, str)
     def __init__(self, tenant_value, app_id, app_secret):
@@ -117,8 +117,8 @@ class CylanceProtectClient(object):
             method (str): Request method: get, post, or patch are accepted
 
         Returns:
-            Response: Response object returned from the request, ``None`` given a connection error or non-200 status
-            code
+            Response: Response object returned from the request, ``None`` given a connection error
+            or non-200 status code
          """
         timeout = (5, 30)
 
@@ -137,9 +137,10 @@ class CylanceProtectClient(object):
                 return False, 'Please enter a value request method: get, post, or patch.'
 
         except requests.exceptions.ConnectionError:
-            return False, 'Connection Error triggered while attempting to connect with cylance at: ' + self.base_url + \
-                         '. Please ensure that your connection to the internet is stable and that your firewall and ' \
-                         'router are not interfering'
+            return False, 'Connection Error triggered while attempting to connect with cylance \
+                           at: ' + self.base_url + '. Please ensure that your connection to the \
+                           internet is stable and that your firewall and \
+                           router are not interfering'
         except Exception as e:
             return False, e.__repr__()
 
@@ -153,10 +154,12 @@ class CylanceProtectClient(object):
 
     def get_jwt_token(self):
         """
-        Function to retrieve cylance JWT token. This has been adapted from the V2 cylance User API guide
+        Function to retrieve cylance JWT token. This has been adapted from the V2 cylance User API
+        guide
 
         Returns:
-            dict: The JSON response from the API containing the JWT token, or ``None`` if the token was not acquired
+            dict: The JSON response from the API containing the JWT token, or ``None`` if the token
+            was not acquired
         """
 
         # 30 minutes from now
@@ -198,15 +201,17 @@ class CylanceProtectClient(object):
             list_type (str): 'GlobalQuarantine' or 'GlobalSafe'
 
         Raises:
-            TypeError: This function is typechecked using the :mod:`irflow_integrations.typecheck` module
+            TypeError: This function is typechecked using the :mod:`irflow_integrations.typecheck`
+            module
 
         Returns:
-            Response: Response object returned from the request, ``None`` given a connection error or non-200 status
-            code
+            Response: Response object returned from the request, ``None`` given a connection error
+            or non-200 status code
         """
         list_value = '1' if list_type == 'GlobalSafe' else '0'
 
-        url = self.base_url + self.endpoints['global_lists'] + '?listTypeId=' + list_value + '&page=1&page_size=10'
+        url = self.base_url + self.endpoints['global_lists'] + '?listTypeId=' + list_value + \
+            '&page=1&page_size=10'
 
         return self._send_request(url)
 
@@ -221,8 +226,8 @@ class CylanceProtectClient(object):
             page_size (int): Number of detections on the page returned
 
         Returns:
-            Response: Response object returned from the request, ``None`` given a connection error or non-200 status
-            code
+            Response: Response object returned from the request, ``None`` given a connection error
+            or non-200 status code
         """
 
         url = self.base_url + self.endpoints['detections']
@@ -243,8 +248,8 @@ class CylanceProtectClient(object):
         """Get cylance Device List
 
         Returns:
-            Response: Response object returned from the request, ``None`` given a connection error or non-200 status
-            code
+            Response: Response object returned from the request, ``None`` given a connection error
+            or non-200 status code
         """
 
         url = self.base_url + self.endpoints['devices'] + '?page=1&page_size=1000'
@@ -259,11 +264,12 @@ class CylanceProtectClient(object):
             device_name (str): Name of the device
 
         Raises:
-            TypeError: This function is typechecked using the :mod:`irflow_integrations.typecheck` module
+            TypeError: This function is typechecked using the :mod:`irflow_integrations.typecheck`
+            module
 
         Returns:
-            Response: Response object returned from the request, ``None`` given a connection error or non-200 status
-            code
+            Response: Response object returned from the request, ``None`` given a connection error
+            or non-200 status code
         """
         device_id = self._get_device_id(device_name)
 
@@ -279,7 +285,8 @@ class CylanceProtectClient(object):
         """Get an ID given a device's name
 
         Raises:
-            TypeError: This function is typechecked using the :mod:`irflow_integrations.typecheck` module
+            TypeError: This function is typechecked using the :mod:`irflow_integrations.typecheck`
+            module
 
         Returns:
             str: The given device's ID if found, ``None`` otherwise
@@ -302,7 +309,8 @@ class CylanceProtectClient(object):
         """Get an ID given a zone's name
 
         Raises:
-            TypeError: This function is typechecked using the :mod:`irflow_integrations.typecheck` module
+            TypeError: This function is typechecked using the :mod:`irflow_integrations.typecheck`
+            module
 
         Returns:
             str: The given zone's ID, ``None`` otherwise
@@ -323,8 +331,8 @@ class CylanceProtectClient(object):
         """Get cylance Zone List
 
         Returns:
-            Response: Response object returned from the request, ``None`` given a connection error or non-200 status
-            code
+            Response: Response object returned from the request, ``None`` given a connection error
+            or non-200 status code
         """
 
         url = self.base_url + self.endpoints['zones'] + '?page=1&page_size=10'
@@ -335,8 +343,8 @@ class CylanceProtectClient(object):
         """Get cylance Policy List
 
         Returns:
-            Response: Response object returned from the request, ``None`` given a connection error or non-200 status
-            code
+            Response: Response object returned from the request, ``None`` given a connection error
+            or non-200 status code
         """
 
         url = self.base_url + self.endpoints['policies'] + '?page=1&page_size=10'
@@ -348,7 +356,8 @@ class CylanceProtectClient(object):
         """Get an ID given a policy's name
 
         Raises:
-            TypeError: This function is typechecked using the :mod:`irflow_integrations.typecheck` module
+            TypeError: This function is typechecked using the :mod:`irflow_integrations.typecheck`
+            module
 
         Returns:
             str: The given policy's ID, ``None`` otherwise
@@ -375,10 +384,12 @@ class CylanceProtectClient(object):
             sha256 (str): Hash value of the threat
 
         Raises:
-            TypeError: This function is typechecked using the :mod:`irflow_integrations.typecheck` module
+            TypeError: This function is typechecked using the :mod:`irflow_integrations.typecheck`
+            module
 
         Returns:
-            Response: Response object returned from the request, ``None`` given a connection error or non-200 status
+            Response: Response object returned from the request, ``None`` given a connection error
+            or non-200 status
             code
         """
 
@@ -394,27 +405,29 @@ class CylanceProtectClient(object):
             sha256 (str): Hash value of the threat
 
         Raises:
-            TypeError: This function is typechecked using the :mod:`irflow_integrations.typecheck` module
+            TypeError: This function is typechecked using the :mod:`irflow_integrations.typecheck`
+            module
 
         Returns:
-            Response: Response object returned from the request, ``None`` given a connection error or non-200 status
-            code
+            Response: Response object returned from the request, ``None`` given a connection error
+            or non-200 status code
         """
 
         url = self.base_url + self.endpoints['threat_url'].format(sha256)
 
         return self._send_request(url)
 
-    @typecheck(int,int)
+    @typecheck(int, int)
     def get_threats(self, page=1, page_size=10):
         """Get cylance Threat List
 
         Returns:
-            Response: Response object returned from the request, ``None`` given a connection error or non-200 status
-            code
+            Response: Response object returned from the request, ``None`` given a connection error
+            or non-200 status code
         """
 
-        url = self.base_url + self.endpoints['threats'] + '?page=' + str(page) + '&page_size=' + str(page_size)
+        url = self.base_url + self.endpoints['threats'] + '?page=' + str(page) + '&page_size=' + \
+            str(page_size)
 
         return self._send_request(url)
 
@@ -422,8 +435,8 @@ class CylanceProtectClient(object):
         """Get threat details for a specific threat
 
         Returns:
-            Response: Response object returned from the request, ``None`` given a connection error or non-200 status
-            code
+            Response: Response object returned from the request, ``None`` given a connection error
+            or non-200 status code
         """
 
         url = self.base_url + self.endpoints['threat_devices'].format(sha256)
@@ -438,16 +451,18 @@ class CylanceProtectClient(object):
         Args:
             list_type (str): 'GlobalQuarantine' or 'GlobalSafe'
             sha256 (str): SHA256 string to add to the GlobalQuarantine or GlobalSafe
-            category (str): Optional. Valid for Safe list only. Values can be: Admin Tool, Commercial Software, Drivers,
-                                Internal Application, Operating System, Security Software, None
+            category (str): Optional. Valid for Safe list only. Values can be: Admin Tool,
+            Commercial Software, Drivers, Internal Application, Operating System, Security Software,
+            None
             reason (str): Optional. Reason to attach to the hash for cylance
 
         Raises:
-            TypeError: This function is typechecked using the :mod:`irflow_integrations.typecheck` module
+            TypeError: This function is typechecked using the :mod:`irflow_integrations.typecheck`
+            module
 
         Returns:
-            Response: Response object returned from the request, ``None`` given a connection error or non-200 status
-            code
+            Response: Response object returned from the request, ``None`` given a connection error
+            or non-200 status code
         """
 
         if list_type != 'GlobalSafe' and list_type != 'GlobalQuarantine':
@@ -475,16 +490,16 @@ class CylanceProtectClient(object):
             list_type (str): 'GlobalQuarantine' or 'GlobalSafe'
 
         Raises:
-            TypeError: This function is typechecked using the :mod:`irflow_integrations.typecheck` module
+            TypeError: This function is typechecked using the :mod:`irflow_integrations.typecheck`
+            module
 
         Returns:
-            Response: Response object returned from the request, ``None`` given a connection error or non-200 status
-            code
+            Response: Response object returned from the request, ``None`` given a connection error
+            or non-200 status code
         """
 
         if list_type != 'GlobalSafe' and list_type != 'GlobalQuarantine':
-            logger.error('Valid list types are \'GlobalQuarantine\' and \'GlobalSafe\'')
-            return None
+            return False, 'Valid list types are \'GlobalQuarantine\' and \'GlobalSafe\''
 
         url = self.base_url + self.endpoints['global_lists']
 
@@ -508,11 +523,12 @@ class CylanceProtectClient(object):
             zone_name (str): Zone to update, ID will be fetched given this name
 
         Raises:
-            TypeError: This function is typechecked using the :mod:`irflow_integrations.typecheck` module
+            TypeError: This function is typechecked using the :mod:`irflow_integrations.typecheck`
+            module
 
         Returns:
-            Response: Response object returned from the request, ``None`` given a connection error or non-200 status
-            code
+            Response: Response object returned from the request, ``None`` given a connection error
+            or non-200 status code
         """
 
         device_id = self._get_device_id(device_name)
@@ -542,5 +558,3 @@ class CylanceProtectClient(object):
         url = self.base_url + self.endpoints['devices'] + '/' + device_id
 
         return self._send_request(url, params=data, method='put')
-
-

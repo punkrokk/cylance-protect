@@ -1,7 +1,4 @@
-import json
-
 from base import CylanceBaseAction
-from st2common.runners.base_action import Action
 
 
 class CylanceGetThreat(CylanceBaseAction):
@@ -23,5 +20,5 @@ class CylanceGetThreat(CylanceBaseAction):
 
             return True, fact_data
         else:
-            return False, "Cylance could not retrieve threat information given the provided hash value"
-
+            return False, "Cylance could not retrieve threat information given the provided hash " \
+                          "value"

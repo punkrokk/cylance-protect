@@ -1,7 +1,4 @@
-import json
-
 from base import CylanceBaseAction
-from st2common.runners.base_action import Action
 
 
 class CylanceChangePolicy(CylanceBaseAction):
@@ -24,4 +21,3 @@ class CylanceChangePolicy(CylanceBaseAction):
             return True, fact_data
         else:
             return False, "Cylance could not change the device's policy as given"
-
