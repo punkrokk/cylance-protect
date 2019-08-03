@@ -15,8 +15,8 @@ Create a configuration file `/opt/stackstorm/configs/cylance_optics.yaml`:
 ```
 
 * ``app_id`` - Cylance App Id 
-* ``app_secret`` - Cylance Application Secret Key.
-* ``tenant_value`` - Cylance Tenant Value.
+* ``app_secret`` - Cylance Application Secret Key
+* ``tenant_value`` - Cylance Tenant Value
 
 
 Add the following to the file `/etc/st2/st2.conf`
