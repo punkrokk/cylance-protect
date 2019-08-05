@@ -3,7 +3,7 @@ name: "Cylance Get Threat URL"
 runner_type: "python-script"
 description: "Get Threat URL from Cylance"
 enabled: true
-entry_point: "cylance_get_threat_url.py"
+entry_point: "get_threat_url.py"
 parameters:
     sha256:
         type: "string"

@@ -3,7 +3,7 @@ name: "Cylance Remove Hash"
 runner_type: "python-script"
 description: "Remove a hash from Cylance Quarantine"
 enabled: true
-entry_point: "cylance_remove_hash.py"
+entry_point: "remove_hash.py"
 parameters:
     hash_value:
       type: "string"

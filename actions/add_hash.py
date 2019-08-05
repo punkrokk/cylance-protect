@@ -1,4 +1,4 @@
-from base import CylanceBaseAction
+from lib.base import CylanceBaseAction
 
 
 class CylanceAddHash(CylanceBaseAction):

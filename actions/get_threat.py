@@ -1,4 +1,4 @@
-from base import CylanceBaseAction
+from lib.base import CylanceBaseAction
 
 
 class CylanceGetThreat(CylanceBaseAction):
@@ -14,11 +14,7 @@ class CylanceGetThreat(CylanceBaseAction):
             except:
                 return False, 'Could not parse JSON response'
 
-            fact_data = {
-                'response': response_dict
-            }
-
-            return True, fact_data
+            return True, response_dict
         else:
             return False, "Cylance could not retrieve threat information given the provided hash " \
                           "value"
