@@ -1,0 +1,5 @@
+---
+
+tenant_value: "{{ st2kv.system.cylance.tenant_value }}"
+app_id: "{{ st2kv.system.cylance.app_id }}"
+app_secret: "{{ st2kv.system.cylance.app_secret | decrypt_kv }}"

@@ -1,11 +1,11 @@
 from lib.base import CylanceBaseAction
 
 
-class CylanceGetThreats(CylanceBaseAction):
+class CylanceGetThreat(CylanceBaseAction):
     """Get Threat Information given a Hash Value"""
-    def run(self, page, page_size):
+    def run(self, sha256):
 
-        response = self.cylance.get_threats(page, page_size)
+        response = self.cylance.get_threat(sha256)
 
         if response[0]:
 
@@ -16,4 +16,5 @@ class CylanceGetThreats(CylanceBaseAction):
 
             return True, response_dict
         else:
-            return False, "Cylance could not retrieve the threat list"
+            return False, "Cylance could not retrieve threat information given the provided hash " \
+                          "value"

@@ -1,10 +1,15 @@
 ---
-name: cylance
-ref: cylance
+name: Cylance Protect
+ref: cylance_protect
 description: Cylance sensors and actions
-keywords: ['cylance']
-stackstorm_version: ">=2.9.0"
-version: 0.9.0
+keywords:
+  - Cylance Protect
+  - Syncurity
+  - security
+  - EDR
+  - Cylance
+stackstorm_version: ">=3.0.0"
+version: 0.9.1
 author: Syncurity
 email: support@syncurity.net
 python version:
@@ -13,7 +18,4 @@ python version:
 contributors:
   - JP Bourget <jp@syncurity.net>
   - Ryan Markle <rmarkle@syncurity.net>
-  - Grace Lombardi <glombardi@syncurity.net>
-  - Brian Tackett <btackett@syncurity.net>
-  - Max Meinhold <mmeinhold@syncurity.net>
   - Alex Schieppati <alex@syncurity.net>
