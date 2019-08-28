@@ -6,13 +6,8 @@ class CylanceGetDevice(CylanceBaseAction):
     def run(self, device_name):
 
         response = self.cylance.get_device(device_name)
-        if response[0]:
+        if response:
 
-            try:
-                response_dict = response[1].json()
-            except:
-                return False, 'Could not parse JSON response'
-
-            return True, response_dict
+            return True, response
         else:
             return False, "Hash could not retrieve device information given the provided name"

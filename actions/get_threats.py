@@ -10,7 +10,7 @@ class CylanceGetThreats(CylanceBaseAction):
         if response[0]:
 
             try:
-                response_dict = response[1].json()
+                response_dict = response[1].json()  # pylint: disable=no-member
             except:
                 return False, 'Could not parse JSON response'
 
