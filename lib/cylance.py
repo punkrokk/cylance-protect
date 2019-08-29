@@ -108,7 +108,7 @@ class CylanceProtectClient(object):
                                 "Authorization": "Bearer {}".format(self.session.token)}
 
     @typecheck(str, dict, str)
-    def _send_request(self, url, params=None, method='get'):
+    def _send_request(self, url, params, method):
         """Request Handler for cylance API operations
 
         Args:
@@ -185,7 +185,7 @@ class CylanceProtectClient(object):
         payload = {"auth_token": encoded}
 
         # send the request
-        response = self._send_request(auth_url, params=payload, method='post')
+        response = self._send_request(auth_url, payload, 'post')
 
         if response[0]:
             response_dict = json.loads(response[1].content)
@@ -213,7 +213,7 @@ class CylanceProtectClient(object):
         url = self.base_url + self.endpoints['global_lists'] + '?listTypeId=' + list_value + \
             '&page=1&page_size=10'
 
-        return self._send_request(url)
+        return self._send_request(url, {}, 'get')
 
     @typecheck(str, str, int, int)
     def get_detections(self, start_time, severity='', page_number=1, page_size=10):
@@ -242,7 +242,7 @@ class CylanceProtectClient(object):
         if severity:
             params.update({'severity': severity})
 
-        return self._send_request(url, params=params, method='get')
+        return self._send_request(url, params, 'get')
 
     def get_devices(self):
         """Get cylance Device List
@@ -254,7 +254,7 @@ class CylanceProtectClient(object):
 
         url = self.base_url + self.endpoints['devices'] + '?page=1&page_size=1000'
 
-        return self._send_request(url)
+        return self._send_request(url, {}, 'get')
 
     @typecheck(str)
     def get_device(self, device_name):
@@ -278,7 +278,7 @@ class CylanceProtectClient(object):
 
         url = self.base_url + self.endpoints['devices'] + '/' + device_id
 
-        return self._send_request(url)
+        return self._send_request(url, {}, 'get')
 
     @typecheck(str)
     def _get_device_id(self, device_name):
@@ -337,7 +337,7 @@ class CylanceProtectClient(object):
 
         url = self.base_url + self.endpoints['zones'] + '?page=1&page_size=10'
 
-        return self._send_request(url)
+        return self._send_request(url, {}, 'get')
 
     def get_policies(self):
         """Get cylance Policy List
@@ -349,7 +349,7 @@ class CylanceProtectClient(object):
 
         url = self.base_url + self.endpoints['policies'] + '?page=1&page_size=10'
 
-        return self._send_request(url)
+        return self._send_request(url, {}, 'get')
 
     @typecheck(str)
     def _get_policy_id(self, policy_name):
@@ -395,7 +395,7 @@ class CylanceProtectClient(object):
 
         url = self.base_url + self.endpoints['threats'] + '/' + sha256
 
-        return self._send_request(url)
+        return self._send_request(url, {}, 'get')
 
     @typecheck(str)
     def get_threat_url(self, sha256):
@@ -415,7 +415,7 @@ class CylanceProtectClient(object):
 
         url = self.base_url + self.endpoints['threat_url'].format(sha256)
 
-        return self._send_request(url)
+        return self._send_request(url, {}, 'get')
 
     @typecheck(int, int)
     def get_threats(self, page=1, page_size=10):
@@ -429,7 +429,7 @@ class CylanceProtectClient(object):
         url = self.base_url + self.endpoints['threats'] + '?page=' + str(page) + '&page_size=' + \
             str(page_size)
 
-        return self._send_request(url)
+        return self._send_request(url, {}, 'get')
 
     def get_threat_devices(self, sha256):
         """Get threat details for a specific threat
@@ -478,7 +478,7 @@ class CylanceProtectClient(object):
             'reason': reason if reason is not None else 'Added via IR-Flow'
         }
 
-        return self._send_request(url, params=data, method='post')
+        return self._send_request(url,data, 'post')
 
     @typecheck(str, str)
     def remove_hash_from_list(self, sha256, list_type):
@@ -509,7 +509,7 @@ class CylanceProtectClient(object):
             'list_type': list_type,
         }
 
-        return self._send_request(url, params=data, method='delete')
+        return self._send_request(url, data, 'delete')
 
     @typecheck(str, str)
     def update_device_policy(self, device_name, policy_name, zone_name=None):
@@ -557,4 +557,4 @@ class CylanceProtectClient(object):
 
         url = self.base_url + self.endpoints['devices'] + '/' + device_id
 
-        return self._send_request(url, params=data, method='put')
+        return self._send_request(url, data, 'put')
