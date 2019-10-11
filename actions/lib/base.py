@@ -31,6 +31,7 @@ class CylanceBaseAction(Action):
         app_secret = sanitized_config.get('app_secret', None)
 
         self.logger.debug(sanitized_config)
+        self.logger.debug(config)
 
         try:
             self.cylance = CylanceProtectClient(tenant_value, app_id, app_secret)
