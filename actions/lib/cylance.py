@@ -102,14 +102,15 @@ class CylanceProtectClient(object):
         self.session.token = self.get_jwt_token()
 
         if self.session.token is None:
-            raise ValueError('Unable to get a valid token from cylance')
+            raise ValueError('Unable to get a valid token from Cylance. Please check if you are '
+                             'using the correct credentials.')
 
         self.session.headers = {"Content-Type": "application/json; charset=utf-8",
                                 "Authorization": "Bearer {}".format(self.session.token)}
 
     @typecheck(str, dict, str)
     def _send_request(self, url, params=None, method='get'):
-        """Request Handler for cylance API operations
+        """Request Handler for Cylance API operations
 
         Args:
             url (str): Target endpoint for the request
@@ -137,24 +138,24 @@ class CylanceProtectClient(object):
                 return False, 'Please enter a value request method: get, post, or patch.'
 
         except requests.exceptions.ConnectionError:
-            return False, 'Connection Error triggered while attempting to connect with cylance \
+            return False, 'Connection Error triggered while attempting to connect with Cylance \
                            at: ' + self.base_url + '. Please ensure that your connection to the \
                            internet is stable and that your firewall and \
                            router are not interfering'
         except Exception as e:
-            return False, e.__repr__()
+            return False, str(e)
 
         # If the status code is bad, then session authentication failed
         try:
             response.raise_for_status()
         except requests.HTTPError as e:
-            return False, e.__str__()
+            return False, str(e)
 
         return True, response
 
     def get_jwt_token(self):
         """
-        Function to retrieve cylance JWT token. This has been adapted from the V2 cylance User API
+        Function to retrieve Cylance JWT token. This has been adapted from the V2 Cylance User API
         guide
 
         Returns:
@@ -195,7 +196,7 @@ class CylanceProtectClient(object):
 
     @typecheck(str)
     def get_global_list(self, list_type):
-        """Get cylance Global GlobalSafe or GlobalQuarantine List
+        """Get Cylance Global GlobalSafe or GlobalQuarantine List
 
         Args:
             list_type (str): 'GlobalQuarantine' or 'GlobalSafe'
@@ -217,7 +218,7 @@ class CylanceProtectClient(object):
 
     @typecheck(str, str, int, int)
     def get_detections(self, start_time, severity='', page_number=1, page_size=10):
-        """Get cylance Detections
+        """Get Cylance Detections
 
         Args:
             start_time (str): The start date-time of the query range
@@ -245,7 +246,7 @@ class CylanceProtectClient(object):
         return self._send_request(url, params=params, method='get')
 
     def get_devices(self):
-        """Get cylance Device List
+        """Get Cylance Device List
 
         Returns:
             Response: Response object returned from the request, ``None`` given a connection error
@@ -258,7 +259,7 @@ class CylanceProtectClient(object):
 
     @typecheck(str)
     def get_device(self, device_name):
-        """Get cylance device info given its device name
+        """Get Cylance device info given its device name
 
         Args:
             device_name (str): Name of the device
@@ -328,7 +329,7 @@ class CylanceProtectClient(object):
         return None
 
     def get_zones(self):
-        """Get cylance Zone List
+        """Get Cylance Zone List
 
         Returns:
             Response: Response object returned from the request, ``None`` given a connection error
@@ -340,7 +341,7 @@ class CylanceProtectClient(object):
         return self._send_request(url)
 
     def get_policies(self):
-        """Get cylance Policy List
+        """Get Cylance Policy List
 
         Returns:
             Response: Response object returned from the request, ``None`` given a connection error
@@ -378,7 +379,7 @@ class CylanceProtectClient(object):
 
     @typecheck(str)
     def get_threat(self, sha256):
-        """Get cylance threat info given its hash value
+        """Get Cylance threat info given its hash value
 
         Args:
             sha256 (str): Hash value of the threat
@@ -399,7 +400,7 @@ class CylanceProtectClient(object):
 
     @typecheck(str)
     def get_threat_url(self, sha256):
-        """Get cylance threat URL given its hash value
+        """Get Cylance threat URL given its hash value
 
         Args:
             sha256 (str): Hash value of the threat
@@ -419,7 +420,7 @@ class CylanceProtectClient(object):
 
     @typecheck(int, int)
     def get_threats(self, page=1, page_size=10):
-        """Get cylance Threat List
+        """Get Cylance Threat List
 
         Returns:
             Response: Response object returned from the request, ``None`` given a connection error
@@ -454,7 +455,7 @@ class CylanceProtectClient(object):
             category (str): Optional. Valid for Safe list only. Values can be: Admin Tool,
             Commercial Software, Drivers, Internal Application, Operating System, Security Software,
             None
-            reason (str): Optional. Reason to attach to the hash for cylance
+            reason (str): Optional. Reason to attach to the hash for Cylance
 
         Raises:
             TypeError: This function is typechecked using the :mod:`irflow_integrations.typecheck`
