@@ -24,7 +24,7 @@ class CylanceBaseAction(Action):
             else:
                 new_value = v
 
-            sanitized_config[k] = new_value
+            sanitized_config[new_key] = new_value
 
         tenant_value = sanitized_config.get('tenant_value', None)
         app_id = sanitized_config.get('app_id', None)
