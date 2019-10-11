@@ -11,9 +11,24 @@ class CylanceBaseAction(Action):
     """Things common to Cylance Optics action class construction"""
     def __init__(self, config):
         super(CylanceBaseAction, self).__init__(config=config)
-        tenant_value = self.config.get('tenant_value', None)
-        app_id = self.config.get('app_id', None)
-        app_secret = self.config.get('app_secret', None)
+
+        sanitized_config = {}
+
+        for k, v in config.items():
+            if isinstance(k, unicode):
+                new_key = k.encode('utf-8')
+            else:
+                new_key = k
+            if isinstance(v, unicode):
+                new_value = v.encode('utf-8')
+            else:
+                new_value = v
+
+            sanitized_config[k] = new_value
+
+        tenant_value = self.sanitized_config.get('tenant_value', None)
+        app_id = self.sanitized_config.get('app_id', None)
+        app_secret = self.sanitized_config.get('app_secret', None)
 
         self.logger.debug(config)
 
