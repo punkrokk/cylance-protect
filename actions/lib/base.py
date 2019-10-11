@@ -26,9 +26,9 @@ class CylanceBaseAction(Action):
 
             sanitized_config[k] = new_value
 
-        tenant_value = self.sanitized_config.get('tenant_value', None)
-        app_id = self.sanitized_config.get('app_id', None)
-        app_secret = self.sanitized_config.get('app_secret', None)
+        tenant_value = sanitized_config.get('tenant_value', None)
+        app_id = sanitized_config.get('app_id', None)
+        app_secret = sanitized_config.get('app_secret', None)
 
         self.logger.debug(config)
 
