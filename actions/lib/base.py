@@ -8,10 +8,11 @@ __all__ = [
 
 
 class CylanceBaseAction(Action):
-    """Things common to Cylance Optics action class construction"""
+    """Things common to Cylance Protect action class construction"""
     def __init__(self, config):
         super(CylanceBaseAction, self).__init__(config=config)
 
+        # we'll clean any unicode here
         sanitized_config = {}
 
         for k, v in config.items():
@@ -30,8 +31,8 @@ class CylanceBaseAction(Action):
         app_id = sanitized_config.get('app_id', None)
         app_secret = sanitized_config.get('app_secret', None)
 
-        self.logger.debug(sanitized_config)
-        self.logger.debug(config)
+        # uncomment for config debugging
+        # self.logger.debug(sanitized_config)
 
         try:
             self.cylance = CylanceProtectClient(tenant_value, app_id, app_secret)

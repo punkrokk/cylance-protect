@@ -12,9 +12,9 @@ class CylanceGetThreatDevices(CylanceBaseAction):
             try:
                 response_dict = response[1].json()
             except:
-                return False, 'Could not parse JSON response'
+                return False, {'result': 'Could not parse JSON response'}
 
-            return True, response_dict
+            return True, {'result': response_dict}
         else:
-            return False, "Cylance could not retrieve threat information given the provided hash " \
-                          "value"
+            return False, {'result': "Cylance could not retrieve threat information given the "
+                                     "provided hash value"}

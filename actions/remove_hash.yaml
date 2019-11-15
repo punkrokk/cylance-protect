@@ -13,4 +13,7 @@ parameters:
       type: "string"
       description: "List type to fetch from Cylance: GlobalQuarantine or GlobalSafe"
       required: true
+      enum:
+        - GlobalQuarantine
+        - GlobalSafe
 

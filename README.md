@@ -12,9 +12,9 @@ Create a configuration file `/opt/stackstorm/configs/cylance.yaml`:
 
 ```
     ---
-    app_id: 
-    app_secret: 
-    tenant_value: 
+    app_id: <your_app_id>
+    app_secret: <your_app_secret>
+    tenant_value: <your_app_tenant_value>
 
 ```
 
