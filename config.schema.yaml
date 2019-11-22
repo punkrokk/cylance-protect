@@ -1,5 +1,5 @@
 ---
-cylance_protect:
+tenants:
   type: "object"
   required: true
   patternProperties:
@@ -7,14 +7,14 @@ cylance_protect:
       "$ref": "#/properties/credentials"
   additionalProperties: false
 
-credentials:
+tenant_credentials:
   type: "object"
   properties:
     tenant_value:
       description: "Cylance Tenant Value"
       type: "string"
       secret: false
-      required: true
+      required: t rue
     app_id:
       description: "Cylance Application Id"
       type: "string"
