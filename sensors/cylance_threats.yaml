@@ -21,4 +21,3 @@ trigger_types:
           type: "string"
         summary:
           type: "string"
-
