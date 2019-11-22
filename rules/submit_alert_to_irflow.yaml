@@ -1,0 +1,27 @@
+---
+name: Create Cylance Protect Alert in IR-Flow
+ref: cylance_protect.alert
+pack: cylance_protect
+description: Create IR-Flow Alert from a Cylance Threat
+enabled: false
+
+type:
+  ref: standard
+  parameters: {}
+
+trigger:
+  type: cylance_protect.threat
+  description: A threat from Cylance Protect
+  parameters: {}
+metadata_file: ''
+context:
+  user: st2admin
+criteria: {}
+action:
+  ref: irflow.create_alert
+  parameters:
+    incoming_field_group_name: "Cylance Threat {{ trigger.tenant }}"
+    log_level: "DEBUG"
+    description: "Cylance Threat"
+    payload: "{{ trigger }}"
+    suppress_missing_field_warning: true

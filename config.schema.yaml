@@ -1,16 +1,28 @@
----
-tenant_value:
-  description: "Cylance Tenant Value"
-  type: "string"
-  secret: false
+ ---
+cylance_protect:
+  type: "object"
   required: true
-app_id:
-  description: "Cylance Application Id"
-  type: "string"
-  secret: false
-  required: true
-app_secret:
-  description: "Application Secret"
-  type: "string"
-  secret: false
-  required: true
+  patternProperties:
+    "^\\w+":
+      "$ref": "#/properties/credentials"
+  additionalProperties: false
+
+credentials:
+  type: "object"
+  properties:
+    tenant_value:
+      description: "Cylance Tenant Value"
+      type: "string"
+      secret: false
+      required: true
+    app_id:
+      description: "Cylance Application Id"
+      type: "string"
+      secret: false
+      required: true
+    app_secret:
+      description: "Application Secret"
+      type: "string"
+      secret: false
+      required: true
+  additionalProperties: false

@@ -4,7 +4,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/e780dfa956aa4882807fb582ea4e1212)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=syncurity-exchange/cylance-protect&amp;utm_campaign=Badge_Grade)
 
 
-Integration for Cylance Protect.
+Stackstorm Integration for Cylance Protect.
 
 ## Configuration
 

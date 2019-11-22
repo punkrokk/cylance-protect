@@ -1,4 +1,4 @@
-  ---
+---
 name: "Cylance Get Device"
 runner_type: "python-script"
 description: "Get Device Detail from Cylance"
