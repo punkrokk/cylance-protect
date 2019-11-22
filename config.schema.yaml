@@ -11,7 +11,7 @@ credentials:
   type: "object"
   properties:
     tenant_value:
-       description: "Cylance Tenant Value"
+      description: "Cylance Tenant Value"
       type: "string"
       secret: false
       required: true
@@ -25,4 +25,4 @@ credentials:
       type: "string"
       secret: false
       required: true
-  additionalProperties: false
+  additionalProperti es: false
