@@ -14,7 +14,7 @@ tenant_credentials:
       description: "Cylance Tenant Value"
       type: "string"
       secret: false
-      required: t rue
+      required: true
     app_id:
       description: "Cylance Application Id"
       type: "string"
