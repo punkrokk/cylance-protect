@@ -1,9 +1,14 @@
-**Syncurity Pack Pull Request**:  
-_Which integration(s) does this PR affect?_
+*Syncurity Pack Pull Request*:  
+
 
 **Summary of Changes**:  
 _Provide a brief summary of the changes made in this PR. If this is a new pack, please link to
  the README_
+
+**New Packs**
+_Delete if not a new pack_
+- [ ] circleci enabled
+- [ ] ssh key setup
 
 **Checklist**:  
 _Please complete the following for the PR to be reviewed._
@@ -21,10 +26,6 @@ _Please complete the following for the PR to be reviewed._
 - [ ] py2 (sensors) and py3 support
 - [ ] Review requested for PR to the appropriate user
 - [ ] Reference to any other work in JIRA or Github
-
-**New Packs**
-- [ ] circleci enabled
-- [ ] ssh key setup
 
 **Fixes for Issue(s)/Ticket(s)**:  
 _Reference the GitHub Issue(s) or open tickets this PR addresses (if any)._
