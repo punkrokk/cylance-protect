@@ -7,15 +7,22 @@
 Stackstorm Integration for Cylance Protect.
 
 ## Configuration
+This pack uses several configuration values as specified in the configuration schema.
 
-Create a configuration file `/opt/stackstorm/configs/cylance.yaml`:
+These may be configured via the web interface, the st2 pack config utility, or directly by creating 
+the file in `/opt/stackstorm/configs/cylance.yaml`:
 
-```
-    ---
+If the configuration is edited manually, remember to inform StackStorm of changes by running st2ctl 
+reload --register-configs.
+
+Multi-tenancy is supported in this pack. For each tenant in the config, the following information
+is needed:
+
+```yaml
+cylance_protect_<tenant_name>
     app_id: <your_app_id>
     app_secret: <your_app_secret>
     tenant_value: <your_app_tenant_value>
-
 ```
 
 * ``app_id`` - Cylance App Id 
