@@ -1,0 +1,19 @@
+---
+name: "Cylance Remove Hash"
+runner_type: "python-script"
+description: "Remove a hash from Cylance Quarantine"
+enabled: true
+entry_point: "remove_hash.py"
+parameters:
+    hash_value:
+      type: "string"
+      description: "SHA256 Hash value to remove"
+      required: true
+    list_type:
+      type: "string"
+      description: "List type to fetch from Cylance: GlobalQuarantine or GlobalSafe"
+      required: true
+      enum:
+        - GlobalQuarantine
+        - GlobalSafe
+

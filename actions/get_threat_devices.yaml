@@ -1,0 +1,11 @@
+---
+name: "Cylance Get Threat Devices"
+runner_type: "python-script"
+description: "Get Threat Device Detail from Cylance"
+enabled: true
+entry_point: "get_threat_devices.py"
+parameters:
+    sha256:
+        type: "string"
+        description: "Sha256 of the threat"
+        required: true
