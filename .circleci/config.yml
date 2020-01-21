@@ -107,7 +107,7 @@ jobs:
           name: Install dependencies
           command: sudo apt -y install gmic optipng
       - run:
-          name: Update exchange.stackstorm.org
+          name: Update exchange.syncurity.net
           command:  ~/ci/.circle/deployment
 
 workflows:
