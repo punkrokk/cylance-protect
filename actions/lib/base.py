@@ -12,30 +12,20 @@ class CylanceBaseAction(Action):
     def __init__(self, config):
         super(CylanceBaseAction, self).__init__(config=config)
 
-        # we'll clean any unicode here
-        sanitized_config = {}
+        self.tenants = []
+        self.instances = {}
 
-        for k, v in config.items():
-            if isinstance(k, unicode):
-                new_key = k.encode('utf-8')
-            else:
-                new_key = k
-            if isinstance(v, unicode):
-                new_value = v.encode('utf-8')
-            else:
-                new_value = v
+        credentials = self.config.get('tenants')
 
-            sanitized_config[new_key] = new_value
+        for tenant, creds in credentials.items():
+            tenant_value = creds.get('tenant_value', None)
+            app_id = creds.get('app_id', None)
+            app_secret = creds.get('app_secret', None)
 
-        tenant_value = sanitized_config.get('tenant_value', None)
-        app_id = sanitized_config.get('app_id', None)
-        app_secret = sanitized_config.get('app_secret', None)
+            try:
+                self.instances[tenant] = CylanceProtectClient(tenant_value, app_id, app_secret,
+                                                              logger=self.logger)
+            except ValueError as e:
+                self.logger.error(e)
 
-        self.logger.info(tenant_value)
-        self.logger.info(app_id)
-        self.logger.info(app_secret)
-
-        try:
-            self.cylance = CylanceProtectClient(tenant_value, app_id, app_secret)
-        except ValueError as e:
-            self.logger.error(e)
+            self.tenants.append(tenant)
