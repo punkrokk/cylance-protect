@@ -1,5 +1,6 @@
 ---
-
-tenant_value: "{{ st2kv.system.cylance.tenant_value }}"
-app_id: "{{ st2kv.system.cylance.app_id }}"
-app_secret: "{{ st2kv.system.cylance.app_secret }}"
+tenants:
+    cylance_tenant_one:
+        app_id: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+        app_secret: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+        tenant_value: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx

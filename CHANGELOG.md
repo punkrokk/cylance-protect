@@ -6,4 +6,4 @@
 
 ## v0.9.0
 
-* Initial Release
+* Initial Release - Actions added

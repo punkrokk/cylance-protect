@@ -7,7 +7,7 @@ tenants:
       "$ref": "#/properties/credentials"
   additionalProperties: false
 
-tenant_credentials:
+credentials:
   type: "object"
   properties:
     tenant_value:
@@ -18,7 +18,7 @@ tenant_credentials:
     app_id:
       description: "Cylance Application Id"
       type: "string"
-      secret: false  
+      secret: false
       required: true
     app_secret:
       description: "Application Secret"
