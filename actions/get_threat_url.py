@@ -2,10 +2,18 @@ from lib.base import CylanceBaseAction
 
 
 class CylanceGetThreatURL(CylanceBaseAction):
-    """Get Threat Device Information given a Hash Value"""
-    def run(self, sha256):
+    """Get Threat URL given a Hash Value"""
+    def run(self, tenant, sha256):
 
-        response = self.cylance.get_threat_url(sha256)
+        if tenant not in self.tenants:
+            response = {
+                "Tenant not found.  Must be one of: " + str(self.tenants)
+            }
+            return False, response
+
+        cylance_instance = self.instances[tenant]
+
+        response = cylance_instance.get_threat_url(sha256)
 
         if response[0]:
 
