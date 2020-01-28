@@ -3,9 +3,17 @@ from lib.base import CylanceBaseAction
 
 class CylanceGetThreat(CylanceBaseAction):
     """Get Threat Information given a Hash Value"""
-    def run(self, sha256):
+    def run(self, tenant, sha256):
 
-        response = self.cylance.get_threat(sha256)
+        if tenant not in self.tenants:
+            response = {
+                "Tenant not found.  Must be one of: " + str(self.tenants)
+            }
+            return False, response
+
+        cylance_instance = self.instances[tenant]
+
+        response = cylance_instance.get_threat(sha256)
 
         if response[0]:
 

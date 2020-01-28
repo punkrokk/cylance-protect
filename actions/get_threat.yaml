@@ -5,7 +5,13 @@ description: "Get Threat Detail from Cylance"
 enabled: true
 entry_point: "get_threat.py"
 parameters:
+    tenant:
+        type: "string"
+        description: "Name of tenant whose credentials will be used"
+        required: true
+        position: 0
     sha256:
         type: "string"
         description: "Sha256 of the threat"
         required: true
+        position: 1
