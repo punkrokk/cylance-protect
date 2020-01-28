@@ -4,9 +4,17 @@ from lib.base import CylanceBaseAction
 
 class CylanceRemoveHash(CylanceBaseAction):
     """Remove a hash value from a Quarantine or Safe List"""
-    def run(self, hash_value, list_type):
+    def run(self, tenant, hash_value, list_type):
 
-        response = self.cylance.remove_hash_from_list(hash_value, list_type)
+        if tenant not in self.tenants:
+            response = {
+                "Tenant not found.  Must be one of: " + str(self.tenants)
+            }
+            return False, response
+
+        cylance_instance = self.instances[tenant]
+
+        response = cylance_instance.remove_hash_from_list(hash_value, list_type)
 
         if response[0]:
             # the response only returns success or failure
