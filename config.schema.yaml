@@ -25,4 +25,4 @@ credentials:
       type: "string"
       secret: false
       required: true
-  additionalProperties: false```
+  additionalProperties: false
