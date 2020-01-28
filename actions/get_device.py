@@ -3,9 +3,17 @@ from lib.base import CylanceBaseAction
 
 class CylanceGetDevice(CylanceBaseAction):
     """Get Device Information given a Device Name"""
-    def run(self, device_name):
+    def run(self, tenant, device_name):
 
-        response = self.cylance.get_device(device_name)
+        if tenant not in self.tenants:
+            response = {
+                "Tenant not found.  Must be one of: " + str(self.tenants)
+            }
+            return False, response
+
+        cylance_instance = self.instances[tenant]
+
+        response = cylance_instance.get_device(device_name)
         if response[0]:
 
             try:

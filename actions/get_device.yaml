@@ -5,7 +5,14 @@ description: "Get Device Detail from Cylance"
 enabled: true
 entry_point: "get_device.py"
 parameters:
+    tenant:
+        type: "string"
+        description: "Name of tenant whose credentials will be used"
+        required: true
+        position: 0
     device_name:
         type: "string"
         description: "Device name of the device in detail"
         required: true
+        position: 1
+
