@@ -15,5 +15,5 @@ class CylanceGetDevice(CylanceBaseAction):
 
             return True, {'result': response_dict}
         else:
-            return False, {'result': "Hash could not retrieve device information given the "
+            return False, {'result': "Could not retrieve device information given the "
                                      "provided name"}

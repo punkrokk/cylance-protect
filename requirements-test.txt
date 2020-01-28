@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-irflow_client
-=======
 irflow_client>=1.6.0
->>>>>>> cc9687bc3be56e03bd58a3bb6def097e0195e539
 requests
 validators
 syncurity-utils<=0.2.24
