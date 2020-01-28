@@ -1,4 +1,4 @@
-```---
+---
 tenants:
   type: "object"
   required: true
