@@ -9,6 +9,7 @@ _Provide a brief summary of the changes made in this PR. If this is a new pack, 
 _Delete if not a new pack_
 - [ ] circleci enabled
 - [ ] ssh key setup
+- [ ] add icon.png
 
 **Checklist**:  
 _Please complete the following for the PR to be reviewed._
