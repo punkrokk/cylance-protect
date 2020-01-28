@@ -24,7 +24,7 @@ class CylanceBaseAction(Action):
 
             try:
                 self.instances[tenant] = CylanceProtectClient(tenant_value, app_id, app_secret)
-                
+
             except ValueError as e:
                 self.logger.error(e)
 

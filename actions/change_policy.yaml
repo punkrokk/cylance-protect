@@ -5,11 +5,18 @@ description: "Change policy of a specific device"
 enabled: true
 entry_point: "change_policy.py"
 parameters:
+    tenant:
+        type: "string"
+        description: "Name of tenant whose credentials will be used"
+        required: true
+        position: 0
     device_name:
         type: "string"
         description: "Name of the device"
         required: true
+        position: 1
     policy_name:
         type: "string"
         description: "Name of the policy"
         required: true
+        position: 2
