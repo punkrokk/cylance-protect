@@ -23,8 +23,8 @@ class CylanceBaseAction(Action):
             app_secret = creds.get('app_secret', None)
 
             try:
-                self.instances[tenant] = CylanceProtectClient(tenant_value, app_id, app_secret,
-                                                              logger=self.logger)
+                self.instances[tenant] = CylanceProtectClient(tenant_value, app_id, app_secret)
+                
             except ValueError as e:
                 self.logger.error(e)
 
